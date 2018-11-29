@@ -29,7 +29,17 @@
   Call your class Employee and receive all the data in the constructor in the order listed above.
 */
 
-//Code Here
+class Employee {
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name;
+      this.last_name = last_name;
+      this.email = email;
+      this.age = age
+  }
+  makeWidget() {
+    return `${this.first_name} ${this.last_name} Widget`
+  }
+}
 
 
 
@@ -49,9 +59,37 @@
   Call your new class Manager
 */
 
-//Code Here
+class Manager {
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name;
+      this.last_name = last_name;
+      this.email = email;
+      this.age = age;
+    this.reports = []
+  }
+  makeWidget() {
+    return str = `${first_name} ${last_name} Widget`
+  }
+  hire(newEmployee) {
+    this.reports.push(newEmployee)
+  }
+  fire(index) {
+    this.reports.splice(index, 1)
+  }
+}
 
-
+// class Manager2 extends Employee{
+//   constructor(first_name, last_name, email,age){
+//     super(first_name, last_name, email, age)
+//     this.reports = []
+//   }
+//   hire(newEmployee) {
+//     this.reports.push(newEmployee)
+//   }
+//   fire(index) {
+//     this.reports.splice(index, 1)
+//   }
+// }
 
 ////////// PROBLEM 3 //////////
 
@@ -75,7 +113,62 @@
   Call your new class ProgressiveManager
 */
 
-//Code Here
+// class ProgressiveManager extends Manager2{
+//   constructor(first_name, last_name, email, age){
+//     super(first_name, last_name, email, age);
+//     this.title = 'Not a manager';
+//     this.bonus = 0;
+//   }
+//   updateTitle(x) {
+  
+//   }
+// }
+class ProgressiveManager {
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email = email;
+    this.age = age;
+    this.reports = [];
+    this.title = 'Not a manager';
+    this.bonus = 0;
+  }
+  makeWidget() {
+    return `${this.first_name} ${this.last_name} Widget`
+  }
+  hire(employee) {
+    this.reports.push(employee)
+    this.managerTitle()
+  }
+  fire(index) {
+    this.reports.splice(index, 1)
+    this.managerTitle()
+    this.fireBonus()
+  }
+  managerTitle(reports) {
+    let l = this.reports.length
+    if (l === 0) {
+      this.title
+    } else if (l >= 1 && l <= 3) {
+      this.title = 'Barely Manager'
+    } else if (l >= 4 && l <= 10) {
+      this.title = 'Mostly Manager'
+    } else if (l >= 11 && l <= 50) {
+      this.title = 'Manager'
+    } else if (l >= 51 && l <= 100) {
+      this.title = 'Manager Plus'
+    } else {
+      this.title = 'Bestest Manager'
+    }
+
+
+  }
+  fireBonus(bonus){
+    this.bonus += 100
+  }
+
+}
+// ProgressiveManager()
 
 
 
@@ -102,6 +195,26 @@
         - The anonymous function should decrease wear_and_tear_count by 10, and set needs_reboot to false
 */
 
-//Code Here
-
+class Machine {
+  constructor(){
+    this.widgets_made_count = 0;
+    this.wear_and_tear_count = 0;
+    this.needs_reboot = false;
+  }
+  makeWidgets(n) {
+    this.widgets_made_count += n;
+    //increase wear_and_tear_count by 1 per 50 widgets
+    let fifty = n / 50
+    this.wear_and_tear_count += Math.trunc(fifty)
+  }
+  fixMachine(){
+    this.needs_reboot = true
+  }
+  reboot(){
+    return () => {
+      this.wear_and_tear_count -= 10;
+      this.needs_reboot = false
+    }
+  }
+}
 
